@@ -16,16 +16,17 @@ func main() {
 	fmt.Println("(0) - exit program")
 
 	var chosenOption int
-	
+
 	fmt.Scan(&chosenOption)
 
-	if chosenOption == 1 {
-		fmt.Println("Monitoring")
-	} else if chosenOption == 2 {
-		fmt.Println("Logs")
-	} else if chosenOption == 0 {
+	switch chosenOption {
+	case 0:
 		fmt.Println("Leaving")
-	} else {
-		fmt.Println("invalid option")
+	case 1:
+		fmt.Println("Monitoring")
+	case 2:
+		fmt.Println("Logs")
+	default:
+		fmt.Println("Invalid option")
 	}
- }
+}
