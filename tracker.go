@@ -18,4 +18,14 @@ func main() {
 	var chosenOption int
 	
 	fmt.Scan(&chosenOption)
-}
+
+	if chosenOption == 1 {
+		fmt.Println("Monitoring")
+	} else if chosenOption == 2 {
+		fmt.Println("Logs")
+	} else if chosenOption == 0 {
+		fmt.Println("Leaving")
+	} else {
+		fmt.Println("invalid option")
+	}
+ }
