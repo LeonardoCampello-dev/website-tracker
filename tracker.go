@@ -2,27 +2,30 @@ package main
 
 import (
 	"fmt"
+	"net/http"
 	"os"
 )
 
 func main() {
 	userGreetingMessage()
 
-	displayInitialMenu()
+	for {
+		displayInitialMenu()
 
-	chosenOption := handleChosenOption()
+		chosenOption := handleChosenOption()
 
-	switch chosenOption {
-	case 0:
-		os.Exit(0)
-	case 1:
-		fmt.Println("Monitoring")
-	case 2:
-		fmt.Println("Logs")
-	default:
-		fmt.Println("Invalid option")
+		switch chosenOption {
+		case 0:
+			os.Exit(0)
+		case 1:
+			startMonitoring()
+		case 2:
+			fmt.Println("Logs")
+		default:
+			fmt.Println("Invalid option")
 
-		os.Exit(-1)
+			os.Exit(-1)
+		}
 	}
 }
 
@@ -48,4 +51,18 @@ func displayInitialMenu() {
 	fmt.Println("(1) - start monitoring")
 	fmt.Println("(2) - display the logs")
 	fmt.Println("(0) - exit program")
+}
+
+func startMonitoring() {
+	fmt.Println("Monitoring")
+
+	site := "https://random-status-code.herokuapp.com/"
+
+	response, _ := http.Get(site)
+
+	if response.StatusCode == 200 {
+		fmt.Println("Website", site, "was successfully loaded")
+	} else {
+		fmt.Println("Website", site, "is having problems. Status Code:", response.StatusCode)
+	}
 }
